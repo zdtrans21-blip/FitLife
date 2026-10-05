@@ -12,7 +12,7 @@ while True:
         user_weight = float(input('Введи свой вес (в кг): '))
         if user_weight < 8 or user_weight > 200:
             print('Ошибка: вес должен быть от 8 до 200 кг. Попробуйте снова.')
-            continue 
+            continue
         break
         
     except ValueError:
@@ -22,20 +22,20 @@ while True:
         user_height = input('Введи свой рост (в метрах, например 1.70): ')
         user_height = float(user_height)
         if user_height < 1.0 or user_height > 2.5:
-            print('Ошибка: рост должен быть от 1.0 до 2.5 метров. Проверьте данные и попробуйте снова.')
-            continue 
+            print('Ошибка: рост должен быть от 1.0 до 2.5 метров. Попробуйте снова.')
+            continue
         break
     except ValueError:
-        print('Введи свой рост используя точку например 1.70, другие символы не подходят:')
+        print('Введи рост используя точку, например 1.70, другие символы не подходят:')
 
 # 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
 # Формула ИМТ: вес разделить на (рост в квадрате)
-user_imt = round(user_weight / (user_height **2),1)
+user_imt = round(user_weight / (user_height ** 2), 1)
 
 
 # Подсчет воды: вес * 30 мл
-water_ml = user_weight *30 
-water_l = round(water_ml / 1000,2)
+water_ml = user_weight * 30
+water_l = round(water_ml / 1000, 2)
 
 
 # 4. Вывод красивого результата
