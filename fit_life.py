@@ -7,26 +7,33 @@ user_age = int(input('Сколько тебе лет? '))
 
 
 # 2. Сбор данных
+# 2.1 Jбозначение ограничений
+min_weight = 8
+max_weight = 200
+min_height = 1
+max_height = 2.3
 while True:
     try:
         user_weight = float(input('Введи свой вес (в кг): '))
-        if user_weight < 8 or user_weight > 200:
-            print('Ошибка: вес должен быть от 8 до 200 кг. Попробуйте снова.')
+    except ValueError:
+       print('Ошибка: нужно ввести число (например, 75.5). Попробуй еще раз.')
+    else:
+        if user_weight < min_weight or user_weight > max_weight:
+            print(f'Ошибка: вес должен быть от {min_weight} до {max_weight} кг. Попробуйте снова.')
             continue
         break
-    except ValueError:
-        print('Ошибка: нужно ввести число (например, 75.5). Попробуй еще раз.')
+                
 while True:
     try:
-        user_height = input('Введи свой рост (в метрах, например 1.70): ')
-        user_height = float(user_height)
-        if user_height < 1.0 or user_height > 2.5:
-            print('Рост должен быть от 1.0 до 2.5 метров. Попробуйте снова.')
-            continue
-        break
+        user_height = float(input('Введи свой рост (в метрах, например 1.70): '))
     except ValueError:
         print('Введи рост через точку, например 1.70')
         print('Другие символы не подходят')
+    else:
+        if user_height < min_height or user_height > max_height:
+            print(f'Рост должен быть от {min_height} до {max_height} метров. Попробуйте снова.')
+            continue
+        break
 
 # 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
 # Формула ИМТ: вес разделить на (рост в квадрате)
