@@ -16,13 +16,14 @@ while True:
     try:
         user_weight = float(input('Введи свой вес (в кг): '))
     except ValueError:
-       print('Ошибка: нужно ввести число (например, 75.5). Попробуй еще раз.')
+        print('Ошибка: нужно ввести число (например, 75.5). Попробуй еще раз.')
     else:
         if user_weight < min_weight or user_weight > max_weight:
-            print(f'Ошибка: вес должен быть от {min_weight} до {max_weight} кг. Попробуйте снова.')
+            print(f'Ошибка: вес должен быть от {min_weight} до {max_weight} кг.')
+            print('Попробуйте снова.')
             continue
         break
-                
+               
 while True:
     try:
         user_height = float(input('Введи свой рост (в метрах, например 1.70): '))
@@ -31,7 +32,8 @@ while True:
         print('Другие символы не подходят')
     else:
         if user_height < min_height or user_height > max_height:
-            print(f'Рост должен быть от {min_height} до {max_height} метров. Попробуйте снова.')
+            print(f'Рост должен быть от {min_height} до {max_height} метров.')
+            print('Попробуйте снова.')
             continue
         break
 
