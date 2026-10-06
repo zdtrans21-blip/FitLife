@@ -22,7 +22,7 @@ while True:
             print(f'Вес должен быть от {min_weight} до {max_weight} кг.')
             print('Попробуйте снова.')
             continue
-        break        
+        break
 while True:
     try:
         user_height = input('Введи свой рост (в метрах, например 1.70): ')
