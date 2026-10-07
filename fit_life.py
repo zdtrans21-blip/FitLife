@@ -1,56 +1,56 @@
 # Проект FitLife - MVP версия 1.0
 
-# 1. Знакомство
+# 1. Обозначение ограничений
+MIN_WEIGHT, MAX_WEIGHT = 8, 200
+MIN_HEIGHT, MAX_HEIGHT = 1.2, 2.3
+MIN_AGE, MAX_AGE = 5, 120
+ML_PER_KG = 30        # мл воды на 1 кг веса
+ML_PER_LITER = 1000   # мл в одном литре
+
+# 2. Функция запроса 
+def ask_number(question, min_value, max_value, example, cast=float):
+    while True:
+        raw = input(question)
+        raw = raw.replace(',', '.')  # чтобы "1,70" тоже сработало 
+        try:
+            value = cast(raw)
+        except ValueError:
+            print(f'Нужно ввести число (например, {example}). Попробуй ещё раз.')
+        else:
+            if min_value <= value <= max_value:
+                return value
+            print(f'Значение должно быть от {min_value} до {max_value}.')
+
+# 3. Знакомство
 print('Привет! Я бот FitLife. Давай познакомимся.')
 user_name = input('Как тебя зовут? ')
-user_age = int(input('Сколько тебе лет? '))
 
+# 4. Сбор данных
+user_age = ask_number('Сколько тебе лет? ', MIN_AGE, MAX_AGE, example='30', cast=int)
+user_weight = ask_number('Введи свой вес (в кг): ', MIN_WEIGHT, MAX_WEIGHT, example='75.5')
+user_height = ask_number('Введи свой рост (в метрах, например 1.70): ', MIN_HEIGHT, MAX_HEIGHT, example='1.70')
 
-# 2. Сбор данных
-# 2.1 Jбозначение ограничений
-min_weight = 8
-max_weight = 200
-min_height = 1
-max_height = 2.3
-while True:
-    try:
-        user_weight = float(input('Введи свой вес (в кг): '))
-    except ValueError:
-        print('Нужно ввести число (например, 75.5). Попробуй еще раз.')
-    else:
-        if user_weight < min_weight or user_weight > max_weight:
-            print(f'Вес должен быть от {min_weight} до {max_weight} кг.')
-            print('Попробуйте снова.')
-            continue
-        break
-while True:
-    try:
-        user_height = input('Введи свой рост (в метрах, например 1.70): ')
-        user_height = float(user_height)
-    except ValueError:
-        print('Введи рост через точку, например 1.70')
-        print('Другие символы не подходят')
-    else:
-        if user_height < min_height or user_height > max_height:
-            print(f'Рост должен быть от {min_height} до {max_height} метров.')
-            print('Попробуйте снова.')
-            continue
-        break
-
-# 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
+# 5. Логика расчетов 
 # Формула ИМТ: вес разделить на (рост в квадрате)
 user_imt = round(user_weight / (user_height ** 2), 1)
+water_ml = user_weight * ML_PER_KG
+water_l = round(water_ml / ML_PER_LITER, 2)
 
+# Доп расчет категории ИМТ
+if user_imt < 18.5:
+    category = 'недостаточный вес'
+elif user_imt < 25:
+    category = 'норма'
+elif user_imt < 30:
+    category = 'избыточный вес'
+else:
+    category = 'ожирение'
 
-# Подсчет воды: вес * 30 мл
-water_ml = user_weight * 30
-water_l = round(water_ml / 1000, 2)
-
-
-# 4. Вывод красивого результата
+# 6. Вывод красивого результата
 print()
 print(f'Отчёт для пользователя: {user_name}, {user_age} лет')
-print(f'Твой Индекс Массы Тела: {user_imt} кг/м^2')
+print(f'Твой Индекс Массы Тела: {user_imt} кг/м^2 ({category})')
 print(f'Рекомендуемая норма воды: {water_l} л. в день')
 print()
-print('Расчёт окончен. Будьте здоровы! ')
+print('Расчёт окончен. Будьте здоровы!')
+
