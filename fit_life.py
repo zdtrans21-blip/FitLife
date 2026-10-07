@@ -31,23 +31,23 @@ user_name = input('Как тебя зовут? ')
 # 4. Сбор данных
 user_age = ask_number(
     'Сколько тебе лет? ',
-     MIN_AGE, MAX_AGE,
-     example='30',
-     cast=int
+    MIN_AGE, MAX_AGE,
+    example='30',
+    cast=int
 )
 user_weight = ask_number(
     'Введи свой вес (в кг): ',
-     MIN_WEIGHT, MAX_WEIGHT,
-      example='75.5'
+    MIN_WEIGHT, MAX_WEIGHT,
+    example='75.5'
 )
 user_height = ask_number(
     'Введи свой рост (в метрах, например 1.70): ',
-     MIN_HEIGHT,
-     MAX_HEIGHT,
-     example='1.70'
+    MIN_HEIGHT,
+    MAX_HEIGHT,
+    example='1.70'
 )
 
-# 5. Логика расчетов 
+# 5. Логика расчетов
 # Формула ИМТ: вес разделить на (рост в квадрате)
 user_imt = round(user_weight / (user_height ** 2), 1)
 water_ml = user_weight * ML_PER_KG
